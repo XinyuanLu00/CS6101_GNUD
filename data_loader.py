@@ -40,9 +40,9 @@ def load_new_data(args):
     r = np.load("./data/data.npz", allow_pickle=True)
     train_data = r['train_data']
     test_data = r['test_data']
-    news_entity = r['news_entity']
-    news_group = r['news_group']
-    news_title = r['news_title'][:, :args.title_len]
+    news_entity = r['news_entity']#14733*40
+    news_group = r['news_group']#取news group 14733*40
+    news_title = r['news_title'][:, :args.title_len]#取title，title length，
 
     with open("./data/train_user_news.txt", 'r') as file:
         train_user_news = eval(file.read())
@@ -170,7 +170,7 @@ def load_news(args):
     n_entity = 69473
     t_entity_news = defaultdict(list)
     entity_news = np.zeros([1 + n_entity, args.news_neighbor], dtype=np.int64)
-    news_entity = np.zeros([1 + len(news), args.entity_neighbor], dtype=np.int64)
+    news_entity = np.zeros([1 + len(news), args.entity_neighbor], dtype=np.int64) #第一行补0，news长度为14732，
     for i in range(1, len(news) + 1):
 
         if len(news[str(i)]['title']) <= args.title_len:
