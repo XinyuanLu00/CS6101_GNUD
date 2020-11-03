@@ -174,9 +174,9 @@ def load_news(args):
     for i in range(1, len(news) + 1): #i from 1 to 14733
 
         if len(news[str(i)]['title']) <= args.title_len: #如果title里的字符串长度<=title_len的值
-            news_title.append(news[str(i)]['title'].extend([0]*(args.title_len-len(news[str(i)]['title']))))#news_title后加
+            news_title.append(news[str(i)]['title'].extend([0]*(args.title_len-len(news[str(i)]['title']))))#news_title后加多个列值，列值为0*title_len-此news长度
         else:
-            news_title.append(news[str(i)]['title'][:args.title_len])
+            news_title.append(news[str(i)]['title'][:args.title_len])#否则就在第i个title后面加title_length数值
         # sample entity neighbors of news
         n_neighbors = len(news[str(i)]['entity'])
         if n_neighbors >= args.entity_neighbor:
