@@ -169,12 +169,12 @@ def load_news(args):
     news_title = []
     n_entity = 69473
     t_entity_news = defaultdict(list)
-    entity_news = np.zeros([1 + n_entity, args.news_neighbor], dtype=np.int64)
-    news_entity = np.zeros([1 + len(news), args.entity_neighbor], dtype=np.int64) #第一行补0，news长度为14732，
-    for i in range(1, len(news) + 1):
+    entity_news = np.zeros([1 + n_entity, args.news_neighbor], dtype=np.int64)#entity_news: 补69474行0，加neighbour
+    news_entity = np.zeros([1 + len(news), args.entity_neighbor], dtype=np.int64) #第一行补0，#of news=14732,
+    for i in range(1, len(news) + 1): #i from 1 to 14733
 
-        if len(news[str(i)]['title']) <= args.title_len:
-            news_title.append(news[str(i)]['title'].extend([0]*(args.title_len-len(news[str(i)]['title']))))
+        if len(news[str(i)]['title']) <= args.title_len: #如果title里的字符串长度<=title_len的值
+            news_title.append(news[str(i)]['title'].extend([0]*(args.title_len-len(news[str(i)]['title']))))#news_title后加
         else:
             news_title.append(news[str(i)]['title'][:args.title_len])
         # sample entity neighbors of news
