@@ -1,6 +1,10 @@
 # GNUD
-Source code for ACL 2020 paper “Graph Neural News Recommendation with Unsupervised Preference Disentanglement”
+ACL 2020 paper “Graph Neural News Recommendation with Unsupervised Preference Disentanglement”
 
-## Processed data
-链接：https://pan.baidu.com/s/1RITM6sFbly-CXkboczjBQA 
-提取码：zlh1
+## Processed data in GNUD
+link：https://pan.baidu.com/s/1RITM6sFbly-CXkboczjBQA 
+password：zlh1
+
+## New MIND Dataset
+Data Desciption:https://github.com/msnews/msnews.github.io/blob/master/assets/doc/introduction.md 
+MIND-Small Download: https://msnews.github.io/
