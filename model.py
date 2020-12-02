@@ -118,21 +118,36 @@ class Model(object):
         print(output.shape)  # [batch,]
         return output
 
-    def infer_loss(self, x, y):
+    def infer_loss(self, x, y): 
         caps = self.ncaps - (self.n_iter - 1) * self.dcaps
         with tf.variable_scope("ret_-2"):
             ret_uw = tf.get_variable(shape=[self.nhidden, caps],
                                          initializer=tf.contrib.layers.xavier_initializer(), name='weights')
             ret_ub = tf.get_variable(shape=[caps], initializer=tf.zeros_initializer(), name='bias')
+            lantent_logits = tf.get_variable(shape=[caps],initializer=tf.contrib.layers.xavier_initializer(), name='k_params') #add new K regularization
         x_class = tf.matmul(tf.reshape(x[-1], [-1, self.nhidden]), ret_uw) + ret_ub
         y_class = tf.matmul(tf.reshape(y[-1], [-1, self.nhidden]), ret_uw) + ret_ub
-        label = tf.tile(tf.eye(caps), [self.batch_size, 1])
-        user_infer_loss = tf.reduce_mean(tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(labels=label, logits=x_class)))
-        news_infer_loss = tf.reduce_mean(tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(labels=label, logits=y_class)))
+        label = tf.tile(tf.eye(caps), [self.batch_size, 1]) # b*caps,caps
+
+        importance = tf.nn.softmax(lantent_logits,axis=0)
+
+        user_infer_cross_entropy = tf.nn.softmax_cross_entropy_with_logits(labels=label, logits=x_class) #b*caps
+        news_infer_cross_entropy = tf.nn.softmax_cross_entropy_with_logits(labels=label, logits=y_class) #b*caps
+        user_infer_cross_entropy = tf.reshape(user_infer_cross_entropy,[self.batch_size,caps]) #bxcaps
+        news_infer_cross_entropy = tf.reshape(news_infer_cross_entropy,[self.batch_size,caps])
+        user_infer_cross_entropy = tf.multiply(user_infer_cross_entropy,importance) #bxcaps
+        news_infer_cross_entropy = tf.multiply(news_infer_cross_entropy, importance)
+
+        user_infer_loss = tf.reduce_sum(user_infer_cross_entropy)
+        news_infer_loss = tf.reduce_sum(news_infer_cross_entropy)
+
+        # user_infer_loss = tf.reduce_mean(tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(labels=label, logits=x_class)))
+        # news_infer_loss = tf.reduce_mean(tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(labels=label, logits=y_class)))
 
         loss = user_infer_loss + news_infer_loss
 
         return loss, ret_uw
+
     def get_neighbors(self, news_seeds, user_seeds):
         news_seeds = tf.expand_dims(news_seeds, axis=1)
         user_seeds = tf.expand_dims(user_seeds, axis=1)
