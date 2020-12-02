@@ -1,4 +1,4 @@
-# GNUD
+## GNUD
 ACL 2020 paper “Graph Neural News Recommendation with Unsupervised Preference Disentanglement”
 
 ## Processed data in GNUD
