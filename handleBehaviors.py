@@ -1,8 +1,10 @@
+##This file is an extraction for MIND features, i.e. News_Users and News_Users
 import pandas as pd 
 import json
 import numpy
 
 
+##This is the function for getting user_news relations
 def getUserNews(df):
 	user_news_dict = dict()
 	for row in df.itertuples():
@@ -25,7 +27,7 @@ def getUserNews(df):
 
 	return user_news_dict
 
-
+##This is the function for getting the news_user relations
 def getNewsUser(df):
 	news_user_dict = dict()
 	for row in df.itertuples():
@@ -50,9 +52,10 @@ def getNewsUser(df):
 
 	return news_user_dict
 
+##main function
 
 def main():
-	df = pd.read_csv('behaviors.tsv', sep='\t', names=['id', 'user', 'time', 'history', 'impressions'])
+	df = pd.read_csv('behaviors.tsv', sep='\t', names=['id', 'user', 'time', 'history', 'impressions']) ## read data from behaviors in MIND
 	user_news_dict = getUserNews(df)
 	news_user_dict = getNewsUser(df)
 
