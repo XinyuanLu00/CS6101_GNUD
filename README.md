@@ -19,7 +19,7 @@ There are totally five data files. ``news_user.json`` is all the user clicking d
 Python 3 TensorFlow. Due to the CUDA version, we run it on CPU and the time expenses is about 7mins each time.
 
 
-## 
+## Update the K regularizer
 In the original paper, the authors use the regularizer. In our new project, we add a new K regularizer. The formula is calculated as follows. The update version of new regularizer can be found in ``model.py``.
 
 
