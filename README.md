@@ -1,5 +1,5 @@
 # This is a tutorial of GNUD (ACL 2020 paper “Graph Neural News Recommendation with Unsupervised Preference Disentanglement”)
-#Dataset:
+## Dataset:
 There are totally five data files. ''news_user.json'' is all the user clicking data for each news. For example, news 1 includes user 1,2,3,4.
 
 # Adding New MIND Dataset
