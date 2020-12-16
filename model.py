@@ -1,3 +1,4 @@
+##This is the model file 
 import tensorflow as tf
 import numpy as np
 from sklearn.metrics import f1_score, roc_auc_score, precision_score, recall_score
@@ -130,6 +131,8 @@ class Model(object):
         label = tf.tile(tf.eye(caps), [self.batch_size, 1]) # b*caps,caps
 
         importance = tf.nn.softmax(lantent_logits,axis=0)
+        
+##Update about the K regularizer
 
         user_infer_cross_entropy = tf.nn.softmax_cross_entropy_with_logits(labels=label, logits=x_class) #b*caps
         news_infer_cross_entropy = tf.nn.softmax_cross_entropy_with_logits(labels=label, logits=y_class) #b*caps
