@@ -16,8 +16,7 @@ There are totally five data files. ``news_user.json`` is all the user clicking d
 ``user_news.json`` is the browsing news data for each user. For example, user 1 browse news 2,3,4.
 
 ## Experiment Environment
-
-
+Python 3 TensorFlow. Due to the CUDA version, we run it on CPU and the time expenses is about 7mins each time.
 
 
 ## 
