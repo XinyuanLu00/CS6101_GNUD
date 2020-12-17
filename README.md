@@ -12,12 +12,13 @@ What we do for this project:
 6. We try to add new MIND dataset to apply to this personalised news recommendations. We try to extract the ``user_news`` and ``news_user`` features in order to consistent with the original data. However, the authors only give the processed data. As a result, we could not figure out how they extract from the raw data.
 
 ## Dataset:
-There are totally 3 data files. 
+There are totally 5 data files. 
 
 1. ``train_news_user.json``  and ``test_news_user.json``: traning and test data for all the news and users. Dictionary. key is the ``newsID``, value is all the userID. For example, news 1 includes user 1,2,3,4.
 2. ``train_user_news.txt`` and ``test_user_news.txt`` :training and test data for the clicking news data for each user. For example, user 1 clicks news 2,3,4.
 3. ``news_entity``: A 40-dimension vector with 0 padding.
 4. ``topic_news.txt``: Total topics for all the news. 
+5. ``data.npz``: raw data. The size is too large. You could find it at the following link: 
 
 
 ## Experiment Environment
