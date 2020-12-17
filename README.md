@@ -17,8 +17,10 @@ There are totally five data files. ``news_user.json`` is all the user clicking d
 
 ## Experiment Environment
 Python 3 and TensorFlow v1.14.
+
 Note: Do not use the TensorFlow which is higher than v2.0. 
 Due to the CUDA version, we run it on CPU and the time expenses is about 7mins each time.
+
 If want to have experiment on GPU: Please make sure the CUDA version is higher than v1.14.
 
 
